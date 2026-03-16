@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:invoicing_business_management/core/constants/constants/assets.dart';
-import 'package:invoicing_business_management/routes/app_pages.dart';
+import 'package:invoicing_business_management/routes/app_path.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void _navigateToNextScreen() {
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
-        context.go(AppPages.login);
+        context.go(AppPath.login);
       }
     });
   }

@@ -14,3 +14,10 @@ class AuthAssets {
   static const google = 'assets/images/auth/google.png';
   static const apple = 'assets/images/auth/apple.png';
 }
+
+
+class SharedAssets {
+  SharedAssets._();
+
+  static const String backIcon = 'assets/images/shared/back_icon.svg';
+}

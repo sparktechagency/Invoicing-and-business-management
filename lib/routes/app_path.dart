@@ -1,5 +1,5 @@
-class AppPages {
-  AppPages._();
+class AppPath {
+  AppPath._();
 
   // =========================== onBoarding===========================
   static const splash = '/';
@@ -9,5 +9,5 @@ class AppPages {
   static const register = '/register';
   static const emailPage = '/email-page';
   static const otpPage = '/otp-page';
-  static const setPassword = '/set-password';
+  static const setNewPassword = '/set-new-password';
 }

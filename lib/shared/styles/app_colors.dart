@@ -1,11 +1,8 @@
-
-
 import 'dart:ui';
 
 class AppColors {
   AppColors._();
 
-  // Default Text
   static const Color defaultTextColor = Color(0xFF0A0A0A);
 
   // ================= BRAND (BLUE) =================
@@ -24,8 +21,8 @@ class AppColors {
   // ================= LUCKY GREY =================
   static const Color luckyGrey50  = Color(0xFFF8FAFC);
   static const Color luckyGrey100 = Color(0xFFF1F5F9);
-  static const Color luckyGrey200 = Color(0xFFE2E8F0);
-  static const Color luckyGrey300 = Color(0xFFCBD5F5);
+  static const Color luckyGrey200 = Color(0xFF777879);
+  static const Color luckyGrey300 = Color(0xFFCBD5E1);
   static const Color luckyGrey400 = Color(0xFF94A3B8);
   static const Color luckyGrey500 = Color(0xFF64748B);
   static const Color luckyGrey600 = Color(0xFF475569);
@@ -72,4 +69,38 @@ class AppColors {
   static const Color orangina800 = Color(0xFF9A3412);
   static const Color orangina900 = Color(0xFF7C2D12);
   static const Color orangina950 = Color(0xFF431407);
+
+  // ================= BG =================
+  static const Color bgPrimary   = luckyGrey50;
+  static const Color bgSecondary = luckyGrey500;
+  static const Color bgSurface   = luckyGrey100;
+  static const Color bgActive    = brand800;
+
+  // ================= TEXT =================
+  static const Color textPrimary   = luckyGrey900;
+  static const Color textSecondary = luckyGrey200;
+  static const Color textTertiary  = luckyGrey500;
+  static const Color textAction    = brand500;
+  static const Color textAlert     = orangina200;
+  static const Color textDanger    = alarm500;
+  static const Color textSuccess   = poisonIvy400;
+  static const Color textInverse   = luckyGrey50;
+
+  // ================= ICON =================
+  static const Color iconPrimary   = luckyGrey900;
+  static const Color iconSecondary = luckyGrey500;
+  static const Color iconTertiary  = luckyGrey500;
+  static const Color iconAction    = brand600;
+  static const Color iconAlert     = orangina300;
+  static const Color iconDanger    = alarm500;
+  static const Color iconSuccess   = poisonIvy400;
+
+  // ================= BORDER =================
+  static const Color borderPrimary   = luckyGrey100;
+  static const Color borderSecondary = luckyGrey200;
+  static const Color borderTertiary  = luckyGrey300;
+  static const Color borderAction    = brand500;
+  static const Color borderAlert     = orangina50;
+  static const Color borderDanger    = alarm700;
+  static const Color borderSuccess   = poisonIvy100;
 }

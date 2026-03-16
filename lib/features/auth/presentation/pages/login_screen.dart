@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:invoicing_business_management/shared/styles/app_text_styles.dart';
 import '../../../../core/constants/constants/assets.dart';
+import '../../../../routes/app_routes_name.dart';
 import '../../../../shared/styles/app_colors.dart';
 import '../../../../shared/widgets/primary_button.dart';
 import '../../../../shared/widgets/primary_input_filed.dart';
 import '../../../../shared/widgets/social_button.dart';
-import '../../../onboarding/presentation/widgets/login_page_top_header.dart';
+import '../widgets/login_page_top_header.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -63,10 +65,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(height: 5.h),
+                      SizedBox(height: 25.h),
                       Text(
                         'Login',
-                        style: AppTextStyles.titleMedium24(),
+                        style: AppTextStyles.subtitleRegular20(),
                       ),
                       SizedBox(height: 20.h),
                       CustomInputField(
@@ -105,7 +107,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+
+                            },
                             child: Text(
                               'Reset',
                               style: GoogleFonts.roboto(
@@ -121,12 +125,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       PrimaryButton(
                         text: 'Login',
                         width: double.infinity,
-                        radius: 8,
+                        radius: 4,
+                        height: 45.h,
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {}
                         },
                       ),
-                      SizedBox(height: 24.h),
+                      SizedBox(height: 14.h),
                       Row(
                         children: [
                           Expanded(
@@ -168,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 32.h),
+                      SizedBox(height: 22.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -180,7 +185,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              context.pushNamed(AppRoutesName.register);
+                            },
                             child: Text(
                               'Sign Up',
                               style: GoogleFonts.roboto(
