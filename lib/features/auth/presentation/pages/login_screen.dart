@@ -74,6 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       CustomInputField(
                         controller: _emailController,
                         hintText: 'Enter your email',
+                        hintTextColor: AppColors.textSecondary,
                         borderRadius: 8.r,
                         keyboardType: TextInputType.emailAddress,
                         validator: (value) {
@@ -87,6 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       CustomInputField(
                         controller: _passwordController,
                         hintText: 'Enter your Password',
+                        hintTextColor: AppColors.textSecondary,
                         isPasswordField: true,
                         borderRadius: 8.r,
                         validator: (value) {
@@ -101,22 +103,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         children: [
                           Text(
                             'Forgot Your password ?  ',
-                            style: GoogleFonts.roboto(
-                              fontSize: 13.sp,
-                              color: AppColors.luckyGrey500,
-                            ),
+                            style: AppTextStyles.bodyRegular16(),
                           ),
                           GestureDetector(
                             onTap: () {
-
+                              context.pushNamed(AppRoutesName.emailPage);
                             },
                             child: Text(
                               'Reset',
-                              style: GoogleFonts.roboto(
-                                fontSize: 13.sp,
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.brand700,
-                              ),
+                              style: AppTextStyles.bodyRegular16(color: AppColors.textAction),
                             ),
                           ),
                         ],
@@ -128,7 +123,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         radius: 4,
                         height: 45.h,
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {}
+                          if (_formKey.currentState!.validate()) {
+
+                          }
                         },
                       ),
                       SizedBox(height: 14.h),
@@ -143,11 +140,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 12.w),
                             child: Text(
-                              'Or continue with:',
-                              style: GoogleFonts.roboto(
-                                fontSize: 13.sp,
-                                color: AppColors.luckyGrey500,
-                              ),
+                              'Or continue with',
+                              style: AppTextStyles.bodyRegular14(color: AppColors.textSecondary),
                             ),
                           ),
                           Expanded(
@@ -179,10 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         children: [
                           Text(
                             "Don't have an account ?  ",
-                            style: GoogleFonts.roboto(
-                              fontSize: 13.sp,
-                              color: AppColors.luckyGrey500,
-                            ),
+                            style:AppTextStyles.bodyRegular16(color: AppColors.textSecondary),
                           ),
                           GestureDetector(
                             onTap: () {
@@ -190,11 +181,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                             child: Text(
                               'Sign Up',
-                              style: GoogleFonts.roboto(
-                                fontSize: 13.sp,
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.brand700,
-                              ),
+                              style: AppTextStyles.bodyRegular16(color: AppColors.textAction),
                             ),
                           ),
                         ],

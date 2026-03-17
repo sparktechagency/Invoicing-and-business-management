@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
 import 'package:invoicing_business_management/routes/app_routes_name.dart';
+import 'package:invoicing_business_management/shared/widgets/app_bar_back_button.dart';
 import '../../../../core/constants/constants/assets.dart';
 import '../../../../shared/styles/app_colors.dart';
 import '../../../../shared/styles/app_text_styles.dart';
@@ -33,6 +34,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: CustomAppBarBackButton(title: 'Create an account'),
       body: SafeArea(
         top: false,
         child: SingleChildScrollView(
@@ -43,8 +45,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 60.h),
-
+                  SizedBox(height: 20.h),
                   Image.asset(
                     Assets.splashLogo,
                     height: 64.h,

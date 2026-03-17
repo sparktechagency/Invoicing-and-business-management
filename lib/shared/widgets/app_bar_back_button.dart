@@ -56,7 +56,6 @@ class CustomAppBarBackButton extends StatelessWidget
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: Row(
               children: [
-                // Back Button
                 _BackIconButton(
                   isActive: isActive,
                   iconColor: effectiveIconColor,
@@ -64,10 +63,7 @@ class CustomAppBarBackButton extends StatelessWidget
                       ? (onTap ?? () => Navigator.of(context).maybePop())
                       : null,
                 ),
-
                 SizedBox(width: 8.w),
-
-                // Title
                 Expanded(
                   child: Text(
                     _formattedTitle,
@@ -78,15 +74,11 @@ class CustomAppBarBackButton extends StatelessWidget
                     maxLines: 1,
                   ),
                 ),
-
-                // Optional trailing actions
                 if (actions != null) ...actions!,
               ],
             ),
           ),
         ),
-
-        // Optional bottom divider
         if (showDivider)
           Divider(
             height: 1,
@@ -101,7 +93,7 @@ class CustomAppBarBackButton extends StatelessWidget
   Size get preferredSize => Size.fromHeight(showDivider ? 57.h : 56.h);
 }
 
-class _BackIconButton extends StatelessWidget {
+class _BackIconButton extends StatefulWidget {
   final bool isActive;
   final Color iconColor;
   final VoidCallback? onTap;
@@ -113,34 +105,66 @@ class _BackIconButton extends StatelessWidget {
   });
 
   @override
+  State<_BackIconButton> createState() => _BackIconButtonState();
+}
+
+class _BackIconButtonState extends State<_BackIconButton> {
+  bool _isPressed = false;
+
+  @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Material(
-        color: Colors.transparent,
-        shape: const CircleBorder(),
-        child: InkWell(
-          onTap: onTap,
-          customBorder: const CircleBorder(),
-          splashColor: AppColors.luckyGrey200.withValues(alpha: 0.6),
-          highlightColor: AppColors.luckyGrey100.withValues(alpha: 0.4),
-          child: Container(
-            decoration: const BoxDecoration(
-              color: AppColors.luckyGrey100,
-              shape: BoxShape.circle,
+    return GestureDetector(
+      onTapDown: (_) => setState(() => _isPressed = true),
+      onTapUp: (_) {
+        setState(() => _isPressed = false);
+        widget.onTap?.call();
+      },
+      onTapCancel: () => setState(() => _isPressed = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
+        width: 35.w,
+        height: 35.h,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          shape: BoxShape.circle,
+          boxShadow: _isPressed
+              ? [
+            BoxShadow(
+              color: Colors.white,
+              offset: const Offset(-2, -2),
+              blurRadius: 4,
+              spreadRadius: 1,
             ),
-            child: Center(
-              child: Padding(
-                padding:  EdgeInsets.all(15.0),
-                child: SvgPicture.asset(
-                  height: 14.h,
-                  width: 14.w,
-                  SharedAssets.backIcon,
-                  colorFilter: ColorFilter.mode(
-                    iconColor,
-                    BlendMode.srcIn,
-                  ),
-                ),
-              ),
+            BoxShadow(
+              color: Colors.grey.shade400,
+              offset: const Offset(2, 2),
+              blurRadius: 4,
+              spreadRadius: 1,
+            ),
+          ]
+              : [
+            BoxShadow(
+              color: Colors.white,
+              offset: const Offset(-4, -4),
+              blurRadius: 8,
+              spreadRadius: 2,
+            ),
+            BoxShadow(
+              color: Colors.grey.shade400,
+              offset: const Offset(4, 4),
+              blurRadius: 8,
+              spreadRadius: 2,
+            ),
+          ],
+        ),
+        child: Center(
+          child: SvgPicture.asset(
+            height: 14.h,
+            width: 14.w,
+            SharedAssets.backIcon,
+            colorFilter: ColorFilter.mode(
+              widget.iconColor,
+              BlendMode.srcIn,
             ),
           ),
         ),

@@ -20,7 +20,7 @@ class AppColors {
 
   // ================= LUCKY GREY =================
   static const Color luckyGrey50  = Color(0xFFF8FAFC);
-  static const Color luckyGrey100 = Color(0xFFF1F5F9);
+  static const Color luckyGrey100 = Color(0xFFDADBDC);
   static const Color luckyGrey200 = Color(0xFF777879);
   static const Color luckyGrey300 = Color(0xFFCBD5E1);
   static const Color luckyGrey400 = Color(0xFF94A3B8);

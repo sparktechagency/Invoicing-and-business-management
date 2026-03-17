@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:invoicing_business_management/features/auth/presentation/pages/email_screen.dart';
 import 'package:invoicing_business_management/features/auth/presentation/pages/login_screen.dart';
 import 'package:invoicing_business_management/features/auth/presentation/pages/otp_screen.dart';
 import 'package:invoicing_business_management/features/auth/presentation/pages/register_screen.dart';
@@ -95,6 +96,15 @@ class AppRoutes {
         context: context,
         state: state,
         child: const SetNewPasswordScreen(),
+      ),
+    ),
+    GoRoute(
+      path: AppPath.emailPage,
+      name: AppRoutesName.emailPage,
+      pageBuilder: (context, state) => _slidePage(
+        context: context,
+        state: state,
+        child: EmailScreen(),
       ),
     ),
   ];

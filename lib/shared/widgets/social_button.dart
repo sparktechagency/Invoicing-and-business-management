@@ -15,7 +15,7 @@ class SocialButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: CircleAvatar(
-        backgroundColor: AppColors.luckyGrey200,
+        backgroundColor: AppColors.bgSurface,
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
