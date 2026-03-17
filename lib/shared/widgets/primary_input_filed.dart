@@ -9,6 +9,7 @@ class CustomInputField extends StatefulWidget {
   final Color? hintTextColor;
   final String? labelText;
   final IconData? prefixIcon;
+  final Widget? prefixWidget;
   final IconData? suffixIcon;
   final bool obscureText;
   final Color suffixIconColor;
@@ -29,6 +30,7 @@ class CustomInputField extends StatefulWidget {
     this.hintTextColor,
     this.labelText,
     this.prefixIcon,
+    this.prefixWidget,
     this.suffixIcon,
     this.obscureText = false,
     this.suffixIconColor = Colors.grey,
@@ -106,91 +108,108 @@ class _CustomInputFieldState extends State<CustomInputField> {
                 ),
               ],
             ),
-            child: TextFormField(
-              controller: widget.controller,
-              obscureText:
-              widget.isPasswordField ? !_isPasswordVisible : widget.obscureText,
-              keyboardType: widget.keyboardType,
-              onChanged: (value) {
-                if (_errorText != null) {
-                  final result = widget.validator?.call(value);
-                  setState(() => _errorText = result);
-                }
-                widget.onChanged?.call(value);
-              },
-              cursorColor: AppColors.brand700,
-              validator: (value) {
-                final result = widget.validator?.call(value);
-                WidgetsBinding.instance.addPostFrameCallback((_) {
-                  if (mounted) setState(() => _errorText = result);
-                });
-                return null;
-              },
-              maxLines: widget.obscureText ? 1 : widget.maxLines,
-              enabled: widget.enabled,
-              style: TextStyle(
-                color: AppColors.luckyGrey900,
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w400,
-              ),
-              decoration: InputDecoration(
-                hintText: widget.hintText,
-                labelText: widget.labelText,
-                hintStyle: TextStyle(
-                  color: widget.hintTextColor ?? AppColors.luckyGrey400,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w400,
-                ),
-                labelStyle: TextStyle(
-                  color: _isFocused
-                      ? (widget.focusedBorderColor ?? AppColors.brand700)
-                      : AppColors.luckyGrey400,
-                  fontSize: 14.sp,
-                ),
-                prefixIcon: widget.prefixIcon != null
-                    ? Icon(
-                  widget.prefixIcon,
-                  color: _isFocused
-                      ? AppColors.brand700
-                      : AppColors.luckyGrey400,
-                  size: 20.sp,
-                )
-                    : null,
-                suffixIcon: widget.isPasswordField
-                    ? IconButton(
-                  icon: Icon(
-                    _isPasswordVisible
-                        ? Icons.visibility_outlined
-                        : Icons.visibility_off_outlined,
-                    color: _isFocused
-                        ? AppColors.brand700
-                        : AppColors.luckyGrey400,
-                    size: 20.sp,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                if (widget.prefixWidget != null) ...[
+                  widget.prefixWidget!,
+                  Container(
+                    width: 1,
+                    height: 24.h,
+                    color: AppColors.luckyGrey300,
                   ),
-                  onPressed: () {
-                    setState(() {
-                      _isPasswordVisible = !_isPasswordVisible;
-                    });
-                  },
-                )
-                    : (widget.suffixIcon != null
-                    ? Icon(
-                  widget.suffixIcon,
-                  color: widget.suffixIconColor,
-                  size: 20.sp,
-                )
-                    : null),
-                border: InputBorder.none,
-                enabledBorder: InputBorder.none,
-                focusedBorder: InputBorder.none,
-                errorBorder: InputBorder.none,
-                focusedErrorBorder: InputBorder.none,
-                contentPadding: EdgeInsets.symmetric(
-                  horizontal: 16.w,
-                  vertical: 14.h,
+                ],
+                Expanded(
+                  child: TextFormField(
+                    controller: widget.controller,
+                    obscureText: widget.isPasswordField
+                        ? !_isPasswordVisible
+                        : widget.obscureText,
+                    keyboardType: widget.keyboardType,
+                    onChanged: (value) {
+                      if (_errorText != null) {
+                        final result = widget.validator?.call(value);
+                        setState(() => _errorText = result);
+                      }
+                      widget.onChanged?.call(value);
+                    },
+                    cursorColor: AppColors.brand700,
+                    validator: (value) {
+                      final result = widget.validator?.call(value);
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        if (mounted) setState(() => _errorText = result);
+                      });
+                      return null;
+                    },
+                    maxLines: widget.obscureText ? 1 : widget.maxLines,
+                    enabled: widget.enabled,
+                    style: TextStyle(
+                      color: AppColors.luckyGrey900,
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
+                    ),
+                    decoration: InputDecoration(
+                      hintText: widget.hintText,
+                      labelText: widget.labelText,
+                      hintStyle: TextStyle(
+                        color: widget.hintTextColor ?? AppColors.luckyGrey400,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      labelStyle: TextStyle(
+                        color: _isFocused
+                            ? (widget.focusedBorderColor ?? AppColors.brand700)
+                            : AppColors.luckyGrey400,
+                        fontSize: 14.sp,
+                      ),
+                      prefixIcon: widget.prefixWidget == null &&
+                          widget.prefixIcon != null
+                          ? Icon(
+                        widget.prefixIcon,
+                        color: _isFocused
+                            ? AppColors.brand700
+                            : AppColors.luckyGrey400,
+                        size: 20.sp,
+                      )
+                          : null,
+                      suffixIcon: widget.isPasswordField
+                          ? IconButton(
+                        icon: Icon(
+                          _isPasswordVisible
+                              ? Icons.visibility_outlined
+                              : Icons.visibility_off_outlined,
+                          color: _isFocused
+                              ? AppColors.brand700
+                              : AppColors.luckyGrey400,
+                          size: 20.sp,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _isPasswordVisible = !_isPasswordVisible;
+                          });
+                        },
+                      )
+                          : (widget.suffixIcon != null
+                          ? Icon(
+                        widget.suffixIcon,
+                        color: widget.suffixIconColor,
+                        size: 20.sp,
+                      )
+                          : null),
+                      border: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      focusedErrorBorder: InputBorder.none,
+                      contentPadding: EdgeInsets.symmetric(
+                        horizontal: 16.w,
+                        vertical: 14.h,
+                      ),
+                      errorStyle: const TextStyle(fontSize: 0, height: 0),
+                    ),
+                  ),
                 ),
-                errorStyle: const TextStyle(fontSize: 0, height: 0),
-              ),
+              ],
             ),
           ),
         ),
