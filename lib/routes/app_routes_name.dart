@@ -1,8 +1,4 @@
-
-
-
 class AppRoutesName {
-
   AppRoutesName._();
 
   // =========================== onBoarding===========================
@@ -14,4 +10,9 @@ class AppRoutesName {
   static const emailPage = 'email-page';
   static const otpPage = 'otp-page';
   static const setNewPassword = 'set-new-password';
+
+  // =========================== Dashboard ============================
+  static const dashboard = 'dashboard';
+
+  
 }

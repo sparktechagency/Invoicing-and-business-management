@@ -123,6 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         radius: 4,
                         height: 45.h,
                         onPressed: () {
+                          context.pushNamed(AppRoutesName.dashboard);
                           if (_formKey.currentState!.validate()) {
 
                           }
